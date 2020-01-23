@@ -22,7 +22,7 @@ class Cli
         add_points(score)
         score_prompt
         continue_prompt
-        #binding.pry
+        binding.pry
     end
 
 

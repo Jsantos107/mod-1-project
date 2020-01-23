@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 2020_01_21_223205) do
 
   create_table "players", force: :cascade do |t|
     t.string "name"
-    t.integer "points"
+    t.integer "score", default: 0
   end
 
   create_table "questions", force: :cascade do |t|

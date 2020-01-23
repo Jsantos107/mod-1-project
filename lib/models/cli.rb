@@ -1,6 +1,10 @@
 class Cli
     attr_reader :player, :question
     
+    def prompt
+        TTY::Prompt.new 
+    end
+
     def start
         puts " "
         puts "Welcome to FlatironFeud!"
@@ -8,39 +12,42 @@ class Cli
         puts "please enter your name"
         @player = Player.create_player
         puts " "
-        puts "Welcome #{player.name.capitalize} lets play!!!" + "\n"
+        puts "Welcome #{player.name.capitalize} lets play!!!"
         puts " "
-        question
+        start_of_questions
     end
     
-    def question
-        quest1 = Question.all.sample
+    def start_of_questions
+        the_question = Question.all.sample
         puts " "
-        puts "#{quest1.question} For #{quest1.points} points."
-        quest1.question_layout 
-        score = quest1.user_answer
-        add_points(score)
-        score_prompt
-        continue_prompt
-        binding.pry
+        answer_prompt = question_prompt(the_question)
+       
+        
+        question_points = the_question.user_answer(answer_prompt)
+        add_score(question_points)
+        print_score
+        ask_continue
+
     end
 
+    def question_prompt(the_question)
+        prompt.select("#{the_question.question} For #{the_question.points} points.", the_question.answer_layout)
+    end
 
-    def add_points(score)
-        player.score += score
+    def add_score(question_points)
+        @player.score += question_points
     end
     
-    def score_prompt
+    def print_score
         puts " "
-        p "#{player.name.capitalize}, you now have #{player.score} points!"
+        puts "#{player.name.capitalize}, you now have #{player.score} points!"
     end
     
-    def continue_prompt
+    def ask_continue
         puts " "
-        puts "Would you like to play again? yes or no"
-        player_answer = gets.chomp.downcase
+        player_answer =  prompt.select("Would you like to play again?", %w(yes no))
         if player_answer == "yes".downcase
-            question
+            start_of_questions
         else 
             puts " "
             puts "Good job #{player.name.capitalize}, you earned a total of #{player.score} points during this playthrough."

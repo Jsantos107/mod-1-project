@@ -26,7 +26,7 @@ class Question < ActiveRecord::Base
     def correct_points
         point = 0
             point += self.points
-            #  binding.pry
+    
     end
 
     def wrong_points

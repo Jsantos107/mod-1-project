@@ -1,8 +1,5 @@
 class Cli
     attr_reader :player, :question
-
-    
-
     
     def start
         puts "Welcome to MyFeud!"

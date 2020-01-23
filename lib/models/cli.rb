@@ -2,7 +2,8 @@ class Cli
     attr_reader :player, :question
     
     def start
-        puts "Welcome to MyFeud!"
+        puts " "
+        puts "Welcome to FlatironFeud!"
         puts " "
         puts "please enter your name"
         @player = Player.create_player
@@ -42,7 +43,7 @@ class Cli
             question
         else 
             puts " "
-            puts "Good job #{player.name.capitalze}, you earned a total of #{player.score} points during this playthrough."
+            puts "Good job #{player.name.capitalize}, you earned a total of #{player.score} points during this playthrough."
         end
     end
 

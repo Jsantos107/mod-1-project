@@ -17,12 +17,28 @@ class Cli
         quest1.question_layout 
         score = quest1.user_answer
         add_points(score)
+        score_prompt
+        continue_prompt
         binding.pry
     end
+
 
     def add_points(score)
         player.score += score
     end
     
+    def score_prompt
+        p "Heya #{player.name}, you now have #{player.score} points!"
+    end
     
+    def continue_prompt
+        puts "Would you like to play again? yes or no"
+        player_answer = gets.chomp.downcase
+        if player_answer == "yes".downcase
+            question
+        else 
+            puts "Good job #{player.name}, you earned a total of #{player.score} during this playthrough."
+        end
+    end
+
 end

@@ -12,6 +12,7 @@ class Question < ActiveRecord::Base
     def user_answer
         player_a = gets.chomp.downcase.to_s 
         if player_a == self.true_a.downcase
+            puts " "
             p "congrats you earned #{points} points!"
             points
         elsif player_a == self.false1.downcase || self.false2.downcase || self.false3.downcase

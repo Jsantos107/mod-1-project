@@ -6,20 +6,22 @@ class Cli
         puts " "
         puts "please enter your name"
         @player = Player.create_player
-        puts "Welcome #{player.name} lets play!!!" + "\n"
+        puts " "
+        puts "Welcome #{player.name.capitalize} lets play!!!" + "\n"
         puts " "
         question
     end
     
     def question
         quest1 = Question.all.sample
+        puts " "
         puts "#{quest1.question} For #{quest1.points} points."
         quest1.question_layout 
         score = quest1.user_answer
         add_points(score)
         score_prompt
         continue_prompt
-        binding.pry
+        #binding.pry
     end
 
 
@@ -28,16 +30,19 @@ class Cli
     end
     
     def score_prompt
-        p "Heya #{player.name}, you now have #{player.score} points!"
+        puts " "
+        p "#{player.name.capitalize}, you now have #{player.score} points!"
     end
     
     def continue_prompt
+        puts " "
         puts "Would you like to play again? yes or no"
         player_answer = gets.chomp.downcase
         if player_answer == "yes".downcase
             question
         else 
-            puts "Good job #{player.name}, you earned a total of #{player.score} during this playthrough."
+            puts " "
+            puts "Good job #{player.name.capitalze}, you earned a total of #{player.score} points during this playthrough."
         end
     end
 

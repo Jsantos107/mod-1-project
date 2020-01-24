@@ -35,7 +35,8 @@ class Cli
     end
 
     def add_score(question_points)
-        @player.score += question_points
+        test = @player.score + question_points
+        @player.update(score: test)
     end
     
     def print_score
@@ -46,7 +47,7 @@ class Cli
     def ask_continue
         puts " "
         player_answer =  prompt.select("Would you like to play again?", %w(yes no))
-        if player_answer == "yes".downcase
+        if player_answer == "yes"
             start_of_questions
         else 
             puts " "

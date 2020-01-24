@@ -33,16 +33,17 @@ class Cli
     def question_prompt(the_question)
         prompt.select("#{the_question.question} For #{the_question.points} points.", the_question.answer_layout)
     end
-
+    
     def add_score(question_points)
-        @player.score += question_points
+        test = @player.score + question_points
+        @player.update(score: test)
     end
     
     def print_score
         puts " "
         puts "#{player.name.capitalize}, you now have #{player.score} points!"
     end
-    
+
     def ask_continue
         puts " "
         player_answer =  prompt.select("Would you like to play again?", %w(yes no))

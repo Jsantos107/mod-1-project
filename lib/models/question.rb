@@ -11,18 +11,17 @@ class Question < ActiveRecord::Base
         shuffle_array
     end
 
-   def user_answer (answer_prompt)
-         
-        # binding.pry
+    def user_answer (answer_prompt)
+        system("clear")
         if answer_prompt == self.correct
             puts " "
-            puts "congrats you earned #{points} points!"
+            puts "congrats you earned #{points} points!".light_green
             points
         elsif answer_prompt == self.false1 || self.false2 || self.false3
             puts " "
-            puts "Not the right answer!"
+            puts "Not the right answer!".light_red
             puts " "
-            puts "The real answer is: #{self.correct}"
+            puts "The real answer is: #{self.correct}".light_red
             wrong_points
         end
     end

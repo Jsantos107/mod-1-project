@@ -48,7 +48,7 @@ class Cli
         puts " "
         puts "#{player.name.capitalize}, you now have #{player.score} points!".light_green
     end
-    
+
     def ask_continue
         puts " "
         player_answer =  prompt.select("Would you like to play again?".light_yellow, %w(yes no))

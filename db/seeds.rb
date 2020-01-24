@@ -16,8 +16,5 @@ questions.map do |api_data|
         false1: api_data["incorrect_answers"][0],
         false2: api_data["incorrect_answers"][1],
         false3: api_data["incorrect_answers"][2]
-                 )
+    )
 end
-
-
-# binding.pry

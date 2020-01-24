@@ -15,3 +15,4 @@ gem "require_all", "~> 3.0"
 gem "pry", "~> 0.12.2"
 gem 'tty-prompt'
 gem "rest-client", "~> 2.1"
+gem 'colorize'

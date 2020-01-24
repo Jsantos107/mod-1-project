@@ -21,6 +21,8 @@ class Question < ActiveRecord::Base
         elsif answer_prompt == self.false1 || self.false2 || self.false3
             puts " "
             puts "Not the right answer!"
+            puts " "
+            puts "The real answer is: #{self.correct}"
             wrong_points
         end
     end

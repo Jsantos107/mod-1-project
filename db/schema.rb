@@ -26,12 +26,14 @@ ActiveRecord::Schema.define(version: 2020_01_21_223205) do
   end
 
   create_table "questions", force: :cascade do |t|
+    t.string "category"
+    t.string "difficulty", default: "easy"
     t.string "question"
-    t.integer "points"
-    t.string "true_a"
+    t.string "correct"
     t.string "false1"
     t.string "false2"
     t.string "false3"
+    t.integer "points", default: 10
   end
 
 end

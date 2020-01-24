@@ -6,7 +6,7 @@ class Question < ActiveRecord::Base
     end
 
     def answer_layout
-        answer_array = ["#{self.true_a}", "#{self.false1}", "#{self.false2}", "#{self.false3}"]
+        answer_array = ["#{self.correct}", "#{self.false1}", "#{self.false2}", "#{self.false3}"]
         shuffle_array = answer_array.shuffle
         shuffle_array
     end
@@ -14,7 +14,7 @@ class Question < ActiveRecord::Base
    def user_answer (answer_prompt)
          
         # binding.pry
-        if answer_prompt == self.true_a
+        if answer_prompt == self.correct
             puts " "
             puts "congrats you earned #{points} points!"
             points

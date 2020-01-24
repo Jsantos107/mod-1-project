@@ -2,15 +2,22 @@ Game.destroy_all
 Question.destroy_all
 Player.destroy_all
 
+api_questions = RestClient.get "https://opentdb.com/api.php?amount=50&type=multiple"
+parsed_questions = JSON.parse(api_questions)
+questions = parsed_questions["results"]
 
 
+questions.map do |api_data|
+    Question.create(
+        category: api_data["category"],
+        difficulty: api_data["difficulty"], 
+        question: api_data["question"], 
+        correct: api_data["correct_answer"], 
+        false1: api_data["incorrect_answers"][0],
+        false2: api_data["incorrect_answers"][1],
+        false3: api_data["incorrect_answers"][2]
+                 )
+end
 
 
-question1 = Question.create(question: "What color is the sky?", points: 10, true_a: "Blue", false1: "Red", false2: "Green", false3: "Yellow")
-question2 = Question.create(question: "How long is a footlong?", points: 10, true_a: "1 foot", false1: "2 feet", false2: "3 feet", false3: "4 feet")
-question3 = Question.create(question: "Rick Astleys's never gonna:", points: 10, true_a: "All of these", false1: "Give you up", false2: "Let you down", false3: "Run around and desert you")
-
-# player1 = Player.create(:name Gabriel)
-
-
-# game2 = Game.create(:player player1, :question quest1)
+# binding.pry
